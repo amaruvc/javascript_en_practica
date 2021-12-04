@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <meta charset="UTF-8" />
+    <title>Ejercicio 1</title>
+  </head>
+
+  <body>
+    <div>
+        <div style="width: 40%; margin: 0 auto" class="container">
+            <h2 class="center">Escríbenos !!!</h2>
+            <div class="resultado center" style="color: green; font-style: italic"></div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="card-panel">
+                        <form id="formulario" class="container">
+                            <div>
+                                <div style="display: flex; flex-direction: column">
+                                    <label> Nombre completo </label>
+                                    <input id="nombre" type="text" />
+                                    <p class="errorNombre" style="color: red; font-style: italic"></p>
+                                </div>
+                                <div style="display: flex; flex-direction: column">
+                                    <label> Asunto </label>
+                                    <input id="asunto" type="text" />
+                                    <p class="errorAsunto" style="color: red; font-style: italic"></p>
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: column">
+                                <label> Mensaje </label>
+                                <input id="mensaje" class="textarea"></input>
+                                <p class="errorMensaje" style="color: red; font-style: italic"></p>
+                            </div>
+                            <div class="center">
+                                <button id="botton" type="submit" class="waves-effect waves-light btn">Envíar mensaje</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+      let formulario = document.querySelector("#formulario");
+      let resultado = document.querySelector(".resultado");
+      let errorNombre = document.querySelector(".errorNombre");
+      let errorAsunto = document.querySelector(".errorAsunto");
+      let errorMensaje = document.querySelector(".errorMensaje");
+      
+      formulario.addEventListener("submit", function (ev) {
+        let nombreApellido = document.querySelector("#nombre").value;
+        let asunto = document.querySelector("#asunto").value;
+        let mensaje = document.querySelector("#mensaje").value;
+          // let validaMail = /[a-z0-9\.-+]+@[a-z0-9\.-]+\.[a-z0-9]/gim;
+        ev.preventDefault()
+        errorNombre.innerHTML = "";
+        errorAsunto.innerHTML = "";
+        errorMensaje.innerHTML = "";
+
+        let validaTexto = /^[a-z0-9 ]+$/i;
+        if (
+          validaTexto.test(nombreApellido) &&
+          validaTexto.test(asunto) &&
+          validaTexto.test(mensaje)
+        ) {
+          resultado.innerHTML = "Mensaje enviado con éxito!";
+        }
+         if (!validaTexto.test(nombreApellido)) {
+          errorNombre.innerHTML = "El nombre es requerido";
+        }
+         if (!validaTexto.test(asunto)) {
+          errorAsunto.innerHTML = "El asunto es requerido";
+        }
+         if (!validaTexto.test(mensaje)) {
+          errorMensaje.innerHTML = "El mensaje es requerido";
+        }
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>

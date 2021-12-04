@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <title>Ejercicio 3</title>
+  </head>
+
+  <body>
+    <div class="container row">
+      <div class="col s8 offset-s2">
+        <h2>Resultado: <span class="resultado"></span></h2>
+        <div>
+          <div>
+            <div>
+              <label for="">Valor 1</label>
+              <input id="valor1" type="text" />
+              <p id="errorNumero1" style="color: red; font-style: italic"></p>
+            </div>
+            <div>
+              <label for="">Valor 2</label>
+              <input id="valor2" type="text" />
+              <p id="errorNumero2" style="color: red; font-style: italic"></p>
+            </div>
+            <div class="row">
+              <div class="col s4 center offset-s2">
+                <button id="btn-sumar" type="button" class="btn">Sumar</button>
+              </div>
+              <div class="col s4" center>
+                <button id="btn-restar" type="button" class="btn">
+                  Restar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let num1 = document.querySelector("#valor1");
+      let num2 = document.querySelector("#valor2");
+      let btnSuma = document.querySelector("#btn-sumar");
+      let btnResta = document.querySelector("#btn-restar");
+      let resultado = document.querySelector(".resultado");
+      let errorMensaje1 = document.querySelector("#errorNumero1");
+      let errorMensaje2 = document.querySelector("#errorNumero2");
+      let validaNumero = /[0-9]+/;
+      btnSuma.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        errorMensaje1.innerHTML = "";
+        errorMensaje2.innerHTML = "";
+        if (validaNumero.test(num1.value) && validaNumero.test(num2.value)) {
+          numero1 = parseInt(num1.value);
+          numero2 = parseInt(num2.value);
+          suma = numero1 + numero2;
+          resultado.innerHTML = suma;
+        }
+        if (!validaNumero.test(num1.value)) {
+          errorMensaje1.innerHTML = "Debe ingresar números";
+        }
+        if (!validaNumero.test(num2.value)) {
+          errorMensaje2.innerHTML = "Debe ingresar números";
+        }
+      });
+      btnResta.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        errorMensaje1.innerHTML = "";
+        errorMensaje2.innerHTML = "";
+        if (validaNumero.test(num1.value) || validaNumero.test(num2.value)) {
+          numero1 = parseInt(num1.value);
+          numero2 = parseInt(num2.value);
+          resta = numero1 - numero2;
+          if (resta < 0) {
+            resta = 0;
+          }
+          resultado.innerHTML = resta;
+        }
+        if (!validaNumero.test(num1.value)) {
+          errorMensaje1.innerHTML = "Debe ingresar números";
+        }
+        if (!validaNumero.test(num2.value)) {
+          errorMensaje2.innerHTML = "Debe ingresar números";
+        }
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
